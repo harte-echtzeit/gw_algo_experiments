@@ -1,0 +1,14 @@
+-- part of original GW FR EP
+-- now using integer sequences to trigger
+
+
+d1 $ degradeBy 0.0
+  $ every 2 ((jux rev) .  (# pan (1.5*sine)) . (# room 0.3) )
+  $ striate 1
+  -- $ zoom (0.2, 0.7)
+  $ n "2 3 5 4 1" # s "gw_cut"
+  # shape "0.7 0.4 0.9"
+  # speed "-0.8 0.3 0.4"  -- # speed "-0.8" -- makes for a good bass start =)
+  # vowel "u i a"
+  # krush "4.5 3 5 2 1"
+  # gain 0.5 -- # gain (fast 4 $ 0.4*sine)
