@@ -4,6 +4,7 @@
 
 let pat = "1 1 2 2 4 2 6 4 6 4 10 4 12 6 8 8 16 6 18 8 12 10 22 8 20 12 18 12 28 8 30 16 20 16 24 12 36 18 24 16 40 12 42 20 24 22 46 16 42 20 32 24 52 18 40 24 36 28 58 16 60 30 36 32 48 20 66 32 4" -- > Euler Phi A000010
     pat_short = "1 1 2 2 4 2 6 4 6 4 10 4 12 6 8 8 16 6 18 8 12 10 22 8 20 12 18 12 28 8 30 16"
+    list_oeis = [1, 1, 2, 2, 4, 2, 6, 4, 6, 4, 10, 4, 12, 6, 8, 8, 16, 6, 18, 8, 12, 10, 22, 8, 20, 12, 18, 12, 28, 8, 30, 16]
 
 d1 $ slow 8
   $ degradeBy 0.0
@@ -45,3 +46,29 @@ d5 -- $ layer [iter 5]
   -- # krush "8 5 2 3"
   # krush pat_short
   # room 0.2 # sz 0.6
+
+
+print(slow 4 $ listToPat list_oeis)
+
+-- testing to loop over a long list
+
+reOrgList n x = drop n x ++ take n x
+maskPat l x = take l x
+maskPat' o l x = take l (drop o x)
+
+maskIterNew l x = if length x > l then do
+  (maskPat' 0 l x)
+  maskIterNew l (drop l x)
+  else return () 
+
+maskIterNew 1 a
+
+print(length(list_oeis))
+
+t: irand
+
+let a = [1,5,2,4,3,6,8]
+
+d2 $ n (listToPat (maskPat' 21 4 list_oeis)) # s "superzow*4" # gain 0.5
+
+d3 $ note (listToPat (maskIterNew 3 list_oeis)) # s "sd*3"
