@@ -1,0 +1,17 @@
+-- some playing with GW and simple algorithms
+
+-- grab some interesting integer sequences here e.g. OEIS
+let list_oeis = [1, 1, 2, 2, 4, 2, 6, 4, 6, 4, 10, 4, 12, 6, 8, 8, 16, 6, 18, 8, 12, 10, 22, 8, 20, 12, 18, 12, 28, 8, 30, 16]
+
+-- defs of some very simple list manipulation
+reOrgList n x = drop n x ++ take n x
+maskPat l x = take l x
+maskPat' o l x = take l (drop o x)
+
+
+-- short
+let a = reOrgList 8 list_oeis
+    pat = listToPat (maskPat 8 a)
+
+d2 $ n pat # s "cpu2" # gain 0.5
+
