@@ -51,11 +51,11 @@ d3 $ fast 2
 
 -- building some drums
 
-d5 $ fast 4 $ (striate 40) $ zoom (0.0, 0.25) $ n "4 1 2 4" # s "gw_cut"
-  # gain 0.85
+d5 $ fast 4 $ (striate 60) $ zoom (0.0, 0.25) $ n "4 1 2 4" # s "gw_cut"
+  # gain 0.75
   # speed "-1.5 -1 -1.8 -1.5"
   # legato 2.8
-  # djf 0.4
+  # djf 0.6
   -- # comb "0.8 0.2 0.5 0.9"
   -- # fshift 50
 
@@ -69,33 +69,33 @@ d4 $ fast 4
   # s "gw_cut(6,8)"
   # speed "1.4"
   -- # shape "0.8" -- !!! adjust GAIN down!
-  # hpf "180 200 400 500"
+  # hpf "150 300 200 500"
   -- # lpf 3500
   -- # cut 1
   # legato 1
-  # djf (slow 8 $ range 0.45 0.75 sine)
-  # gain 1.4
-  # fshift "<[120..130] [-80..-100]>"
-  -- # fshift "<-140 110>"
-  # waveloss "23"
+  -- # djf (slow 8 $ range 0.45 0.75 sine)
+  # gain 1.5
+  -- # fshift "<[120..130] [-80..-100]>"
+  # fshift "<-100 130>"
+  -- # waveloss "23"
   # pan perlin
   -- # comb 0.02
   # vowel "a u [i|e]"
-  -- # squiz 2
-  # smear "<0.5 4 0.8 3>"
+  # squiz "2 3"
+  -- # smear "<0.5 4 0.8 3>"
 
 hush
 
 -- myterious
 d5 $ fast 0.5
   $ slice 6 pat'
-  $ sometimes (# shape 0.6)
+  -- $ sometimes (# shape 0.6)
   $ grain 0.6 0.05 # s "gw_cut:8 gw_cut:8"
   # smear "0.4 .. 0.9"
   # speed "-1 <-0.9 -1.1>"
   # pan perlin
-  # dry 0.6 # room 0.4 # sz 0.8
-  # gain 0.8
+  # dry 0.4 # room 0.4 # sz 0.8
+  # gain 0.85
 
 
 -- BEAT e.g. in combo with d4
@@ -111,14 +111,15 @@ d6 $ fast 8
   # dry 0.95 # room 0.05 # sz 0.9
   # distort 0.8
   # pan perlin
-  # gain (slow 4 $ range 0.5 0.8 sine)
+  # gain (slow 4 $ range 0.6 0.8 sine)
 
 
 pat
 
+hush
 
 -- dark slow beat start and backround
-d7 $ slow 2 $ n pat # s "gw_cut"
+d7 $ slow 1 $ n pat # s "gw_cut"
   -- # cut 1
   # gain 0.8
   # hpf 80
@@ -128,7 +129,7 @@ d7 $ slow 2 $ n pat # s "gw_cut"
 
 
 do
-  setcps ((135/3)/60/4)
+  setcps ((135/1)/60/4)
   d8 $ slow 2
     -- $ striate 12
     $ n "1 8 2 7"
@@ -147,7 +148,7 @@ d9 $ rarely (superimpose ((# grain 0.3 0.3) . (# speed "-1")))
   # room 0.1 # sz 0.6
   # lpf 400
   # speed "<0.8 1 0.9 1.1>"
-  # gain 0.8
+  # gain 0.5
 
 
 

@@ -1,3 +1,4 @@
+
 -- part of original GW FR EP
 -- now using integer sequences to trigger
 -- first examples from the On-Line Encyclopedia of Integer Sequences (OEIS)
@@ -6,20 +7,20 @@ let pat = "1 1 2 2 4 2 6 4 6 4 10 4 12 6 8 8 16 6 18 8 12 10 22 8 20 12 18 12 28
     pat_short = "1 1 2 2 4 2 6 4 6 4 10 4 12 6 8 8 16 6 18 8 12 10 22 8 20 12 18 12 28 8 30 16"
     list_oeis = [1, 1, 2, 2, 4, 2, 6, 4, 6, 4, 10, 4, 12, 6, 8, 8, 16, 6, 18, 8, 12, 10, 22, 8, 20, 12, 18, 12, 28, 8, 30, 16]
 
-d1 $ slow 8
+d1 $ slow 4
   $ degradeBy 0.0
   $ every 2 ((jux rev) .  (# pan (1.5*sine)) . (# room 0.3) )
   $ zoom (0.25, 0.75)
   -- $ striate 1
   -- $ zoom (0.2, 0.7)
-  -- $ n "2 3 5 4 1" # s "gw_cut"
-  $ n pat_short # s "gw_cut"
+  $ n "2 3 5 4 1" # s "gw_cut"
+  -- $ n pat_short # s "gw_cut"
   # shape "0.7 0.4 0.9"
   # speed "-0.8 0.3 0.4"  -- # speed "-0.8" -- makes for a good bass start =)
   # vowel "u i a"
   # krush "4.5 3 5 2 1"
   # gain 0.8 -- # gain (fast 4 $ 0.4*sine)
-  # cut 1
+  -- # cut 1
 
 
 
@@ -44,7 +45,7 @@ d5 -- $ layer [iter 5]
   -- # lpf "300"
   -- # djf (range 0 1 $ sine)
   -- # krush "8 5 2 3"
-  # krush pat_short
+  -- # krush pat_short
   # room 0.2 # sz 0.6
 
 
