@@ -1,0 +1,76 @@
+-- a short track with some algorithmic toying for submission in the "Sound of Europe 2025" competition/open call by raster media
+-- adaption and modifictaion  for the second submission 11-2024
+
+-- grab some interesting integer sequences here e.g. OEIS
+-- list_euler = A000010
+-- list_fractal = A025480
+-- list_grav = A353769
+let list_euler = [1, 1, 2, 2, 4, 2, 6, 4, 6, 4, 10, 4, 12, 6, 8, 8, 16, 6, 18, 8, 12, 10, 22, 8, 20, 12, 18, 12, 28, 8, 30, 16]
+    list_fractal = [0, 0, 1, 0, 2, 1, 3, 0, 4, 2, 5, 1, 6, 3, 7, 0, 8, 4, 9, 2, 10, 5, 11, 1, 12, 6, 13, 3, 14, 7, 15, 0, 16, 8, 17, 4, 18, 9, 19, 2, 20, 10, 21, 5, 22, 11, 23, 1, 24, 12, 25, 6, 26, 13, 27, 3, 28, 14, 29, 7, 30, 15, 31, 0, 32, 16, 33, 8, 34, 17, 35, 4, 36, 18, 37, 9, 38, 19, 39, 2, 40, 20, 41, 10]
+    list_grav = [6, 4, 9, 2, 2, 4, 1, 4, 4, 5, 6, 4, 5, 9, 1, 2, 6, 4, 7, 1, 2, 4, 7, 4, 7, 4, 2, 4, 4, 6, 6, 8, 2, 0, 3, 1, 5, 3, 5, 9, 5, 0, 1, 6, 4, 6, 9, 1, 0, 4, 1, 9, 3, 1, 3, 4, 8, 7, 8, 0, 0, 3, 3, 4, 0, 3, 3, 2, 2, 1, 2, 8, 6, 1, 7, 1, 1, 1, 5, 9, 9, 4, 3, 1, 3, 1, 4, 4, 2, 9, 8, 3, 8, 6, 5, 2, 6, 4, 0, 8, 2, 9, 9, 0, 0]
+
+
+
+-- defs of some very simple list manipulation
+reOrgList n x = drop n x ++ take n x
+maskPat l x = take l x
+maskPat' o l x = take l (drop o x)
+
+
+-- short-hand for using it while playing live
+let a = reOrgList 6 list_grav
+    pat = listToPat (maskPat 8 a)
+    pat' = listToPat (reverse (maskPat 8 a))
+
+-- fairly abstract background -> maybe played as an intro
+d1 $ every 4 (chop 64)
+  $ ghost
+  -- $ fast 2
+  $ stack[
+    grain 0.37 0.1 # n "2" # s "gw_cut" #speed "0.9",
+    sometimes (randslice 123) $ grain 0.36 0.06 # n "2" # s "gw_cut" # speed "1.9" # accelerate 0.1]
+    -- # timescale 2
+    -- # timescalewin "<0.2 0.4 0.6>"  -- > artefact plays the melody ;-)
+    -- # comb 0.2
+    -- # smear 0.8
+    # room 0.03
+    # fshift "90"
+    # speed "<0.7 0.9>"
+    # pan perlin
+    # gain 0.7
+
+  hush
+
+--- grain works only on first sample -> must iterate through different samples
+d2 $ fast 2
+  $ grain 0.3 0.1
+  # n "<7 2 1>" # s "gw_cut" # gain 0.8 # speed "3.5" # timescale 1.5
+
+
+d3 $ smash 3 [2,3,4] $ n "4 2*3 3" # s "gw_cut" # gain 0.7
+
+
+-- beat the drum (drum like sounds are samples 5-7 + 9)
+d4 $ slow 2
+  $ layer[(# fshift "-50 -100 42 68") . (#room 0.6)] $ n "6(13,16)" # s "gw_cut"
+  # speed "1.1 -1.55 -1.6 2"
+  # squiz "15 12 23" -- CAREFUL
+  # lpf "200 100 700 700 300"
+  -- # shape "-0.8 0.4 0.1"
+  -- # comb "0.6 0.1 0.3"
+  -- # gain 0.6
+  # gain 0.4 -- MIDI live  -- # gain (range 0.4 0.75 $ cF 0.5 "4")
+
+
+  -- interesting, bubbling sounds
+d9 $ sometimes ((# squiz 3) . (# fast 3 (vowel "o a u")) . (# lpf 400)) $ sometimes (superimpose ((jux rev) . (# djf rand)))
+  $ n "1 .. 9"
+  # s "gw_cut"
+  # pan (fast 6 $ sine)
+  # room (rand)
+  # legato 14
+  # speed (irand 16)
+  -- MAX gain 0.8
+  # gain (fast 6 $ 0.5 * sine)
+
+  hush

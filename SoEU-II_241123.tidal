@@ -44,13 +44,13 @@ d8 $ striate "32 64"
   $ s "gw_cut:5*4 gw_cut:6*6 gw_cut:7*8"
   # hpf "200 100 50"
   -- # hpf 400
-  # speed "-0.7"
+  # speed "-0.9"
   -- # vowel (choose["a, o, e"])
-  # waveloss "20 .. 60"
+  -- # waveloss "20 .. 60"
   -- MAX gain 0.75
-  # gain 0.5
+  # gain 0.4
   # room 0.3 #sz 0.9
-  # fshift "<-100 150 400>"
+  # fshift "<-100 150 300>"
 
 -- interesting, bubbling sounds
 d9 $ sometimes ((# squiz 3) . (# fast 3 (vowel "o a u")) . (# lpf 400)) $ sometimes (superimpose ((jux rev) . (# djf rand)))
@@ -73,38 +73,38 @@ setcps ((135/1)/60/4)
 -- some background clicks and drumming - stable to drive track! e.g. with d6
 d1 $ fast 4
   $ degradeBy 0.0
-  $ slice 6 "6 4 1 0"
+  -- $ slice 6 "6 4 1 0"
   -- $ sometimes (swingBy (1/2) 2)
   $ n "4 1 2 4"
   # s "gw_cut(6,8)"
   # speed "1.4"
   # shape "0.8" -- !!! adjust GAIN down!
-  # hpf "150 300 200 500"
+  -- # hpf "150 300 200 500"
   -- # lpf 3500
   # legato 1
   -- # djf (slow 8 $ range 0.45 0.75 sine)
   # fshift "<-100 130>"
   -- # waveloss (pat*pat')
   # pan perlin
-  # comb 0.02
+  -- # comb 0.02
   -- # vowel "a u [i|e]"
-  # squiz "2 3"
+  -- # squiz "2 3"
   # smear "<0.5 4 0.8 3>"
   -- MAX gain 1.1
-  # gain 0.99
+  # gain 0.7
 
 
 -- BEAT e.g. >> eats up d4!!!!
 d2 $ fast 8
-  -- $ sometimes ((# vowel "e"))
-  $ superimpose ((# krush "<2 6>") . (# shape 0.7))
+  $ sometimes ((# vowel "e"))
+  -- $ superimpose ((# krush "<2 6>") . (# shape 0.7))
   $ grain 0.5 "0.05..0.08"
   # s "gw_cut:0"
   # sustain "<0.002 0.005 0.004>"
   -- # hpf (pat* (range 100 450 sine))
   -- # djf 0.7
-  # shape 0.7
-  # dry 0.95 # room 0.05 # sz 0.9
+  -- # shape 0.7
+  -- # dry 0.95 # room 0.05 # sz 0.9
   -- # distort 0.1
   # pan perlin
   -- MAX gain 0.9
@@ -122,21 +122,25 @@ d3 $ fast 2
   # speed "<-2 -1.5>"
   # fshift "160 130 -10"
   -- MAX gain 1.1
-  # gain 0.7
+  # gain 0.5
 
 
 -- building some drums --> nice THICK -> good for layering
-d4 $ fast 4 $ (striate 10) $ zoom (0.0, 0.25) $ n "4 1 2 4" # s "gw_cut"
+d4 $ fast 4 $ (striate 10) $ zoom (0.0, 0.25)
+  $ n "4 1 2 4"
+  -- $ n pat
+  # s "gw_cut"
   # speed "-1.5 -1 -1.8 -1.5"
   # legato 2.8
-  # djf "0.6 0.7 0.65 0.5"
+  -- # djf "0.6 0.7 0.65 0.5"
   -- # comb "0.6 0.3 0.5 0.9"
-  -- # krush 0.3
+  # krush 0.3
   -- # fshift 50
   -- MAX gain 1.1
-  # gain 0.7
+  # gain 0.5
 
 
+-- Maybe in T2?
 -- weave a bit thicker here in order to build up towards a BREAK
 -- myterious = switch on and of
 d5 $ fast 0.5
@@ -156,7 +160,7 @@ d5 $ fast 0.5
 -- dark slow beat start and backround -> works well with d8
 d6 $ slow 1 $ n pat # s "gw_cut"
    -- MAX gain 1
-  # gain 0.8
+  # gain 0.6
   # hpf 80
   # speed "-1 -1.1 -0.9 -1"
   # room 0.051
