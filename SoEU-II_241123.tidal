@@ -48,7 +48,7 @@ d8 $ striate "32 64"
   -- # vowel (choose["a, o, e"])
   -- # waveloss "20 .. 60"
   -- MAX gain 0.75
-  # gain 0.4
+  # gain 0.6
   # room 0.3 #sz 0.9
   # fshift "<-100 150 300>"
 
@@ -61,7 +61,7 @@ d9 $ sometimes ((# squiz 3) . (# fast 3 (vowel "o a u")) . (# lpf 400)) $ someti
   # legato 14
   # speed (irand 16)
   -- MAX gain 0.8
-  # gain (fast 6 $ 0.5 * sine)
+  # gain (fast 6 $ 0.3 * sine)
 
 
 hush
@@ -84,31 +84,30 @@ d1 $ fast 4
   # legato 1
   -- # djf (slow 8 $ range 0.45 0.75 sine)
   # fshift "<-100 130>"
-  -- # waveloss (pat*pat')
+  # waveloss (pat*pat')
   # pan perlin
   -- # comb 0.02
   -- # vowel "a u [i|e]"
-  -- # squiz "2 3"
-  # smear "<0.5 4 0.8 3>"
+  # squiz "2 3"
+  -- # smear "<0.5 4 0.8 3>"
   -- MAX gain 1.1
-  # gain 0.7
+  # gain 0.6
 
 
 -- BEAT e.g. >> eats up d4!!!!
-d2 $ fast 8
+d2 $ fast 4
   $ sometimes ((# vowel "e"))
-  -- $ superimpose ((# krush "<2 6>") . (# shape 0.7))
-  $ grain 0.5 "0.05..0.08"
+  $ superimpose ((# krush "<2 6>") . (# shape 0.7))
+  $ grain 0.5 "0.05..0.3"
   # s "gw_cut:0"
-  # sustain "<0.002 0.005 0.004>"
   -- # hpf (pat* (range 100 450 sine))
   -- # djf 0.7
-  -- # shape 0.7
-  -- # dry 0.95 # room 0.05 # sz 0.9
+  # shape 0.7
+  # dry 0.95 # room 0.05 # sz 0.9
   -- # distort 0.1
   # pan perlin
   -- MAX gain 0.9
-  # gain (slow 4 $ range 0.7 0.9 sine)
+  # gain (slow 4 $ range 0.4 0.6 sine)
 
 
 
@@ -119,25 +118,36 @@ d3 $ fast 2
   $ splice 4 pat
   $ s "gw_cut:3(<3 5>,8)"
   # lpf 1800
-  # speed "<-2 -1.5>"
-  # fshift "160 130 -10"
+  # speed "<-2 -1.7>"
+  # fshift "320 80 1600" -- play the melody here!
   -- MAX gain 1.1
   # gain 0.5
 
 
 -- building some drums --> nice THICK -> good for layering
-d4 $ fast 4 $ (striate 10) $ zoom (0.0, 0.25)
+d4 $ fast 2 $ (striate 10) $ zoom (0.0, 0.25)
   $ n "4 1 2 4"
   -- $ n pat
   # s "gw_cut"
   # speed "-1.5 -1 -1.8 -1.5"
   # legato 2.8
-  -- # djf "0.6 0.7 0.65 0.5"
+  # djf "0.6 0.7 0.65 0.5"
   -- # comb "0.6 0.3 0.5 0.9"
-  # krush 0.3
+  -- # krush 0.3
   -- # fshift 50
   -- MAX gain 1.1
   # gain 0.5
+
+
+
+
+
+
+
+
+
+
+---------------------------------------- maybe leave out evrything down below!!!
 
 
 -- Maybe in T2?
