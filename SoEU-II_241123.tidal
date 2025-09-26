@@ -1,3 +1,7 @@
+-- EDIT finally for CZ sample submission!!
+-- refactor and add comments
+-- note web adress and repo!
+
 -- a short track with some algorithmic toying for submission in the "Sound of Europe 2025" competition/open call by raster media
 -- adaption and modifictaion  for the second submission 11-2024
 
@@ -46,14 +50,14 @@ d8 $ striate "32 64"
   -- # hpf 400
   # speed "-0.9"
   -- # vowel (choose["a, o, e"])
-  -- # waveloss "20 .. 60"
+  # waveloss "20 .. 60"
   -- MAX gain 0.75
   # gain 0.6
   # room 0.3 #sz 0.9
   # fshift "<-100 150 300>"
 
 -- interesting, bubbling sounds
-d9 $ sometimes ((# squiz 3) . (# fast 3 (vowel "o a u")) . (# lpf 400)) $ sometimes (superimpose ((jux rev) . (# djf rand)))
+d9 $ sometimes ((# squiz 2) . (# fast 3 (vowel "i a u")) . (# lpf 400)) $ sometimes (superimpose ((jux rev) . (# djf rand)))
   $ n "1 .. 9"
   # s "gw_cut"
   # pan (fast 6 $ sine)
@@ -63,18 +67,39 @@ d9 $ sometimes ((# squiz 3) . (# fast 3 (vowel "o a u")) . (# lpf 400)) $ someti
   -- MAX gain 0.8
   # gain (fast 6 $ 0.3 * sine)
 
+let tilt = pF "tilt"
+
+-- a slow drone that run a long time...maybe add more randomness here!
+d6 $ slow 2
+  -- $ palindrome
+  $ whenmod 5 3 ((#smear rand) . (# room 0.6)) 
+  $ layer [id, off 0.0675 (+12), off 0.125 (+24)]
+  -- $ note ("a c e g" |+ 8)
+  $ note ("f a e b" |+ 8)
+  #  s "gw_cut:8"
+  # grain 0.3 0.4
+  # tilt 0.03
+  # speed "0.9"
+  # octave 6
+  # binshift (slow 2 $ range 0.1 0.3 $ sine)
+  # gain 0.6
+  -- # legato 1
+  -- # lpf 1000
+  # room 0.1 # sz 0.7
+  # pan perlin
 
 hush
 
--- # MAIN driver
-
 setcps ((135/1)/60/4)
+
+
+-- # MAIN driver
 
 -- some background clicks and drumming - stable to drive track! e.g. with d6
 d1 $ fast 4
   $ degradeBy 0.0
-  -- $ slice 6 "6 4 1 0"
-  -- $ sometimes (swingBy (1/2) 2)
+  $ slice 6 "6 4 1 0"
+  $ sometimes (swingBy (1/2) 2)
   $ n "4 1 2 4"
   # s "gw_cut(6,8)"
   # speed "1.4"
@@ -85,13 +110,14 @@ d1 $ fast 4
   -- # djf (slow 8 $ range 0.45 0.75 sine)
   # fshift "<-100 130>"
   # waveloss (pat*pat')
-  # pan perlin
+  -- # pan perlin
   -- # comb 0.02
-  -- # vowel "a u [i|e]"
-  # squiz "2 3"
+  # vowel "a u [i|e]"
+  -- # squiz "2 3"
   -- # smear "<0.5 4 0.8 3>"
   -- MAX gain 1.1
-  # gain 0.6
+  # gain 0.9
+  -- # tilt 0.03
 
 
 -- BEAT e.g. >> eats up d4!!!!
@@ -102,27 +128,43 @@ d2 $ fast 4
   # s "gw_cut:0"
   -- # hpf (pat* (range 100 450 sine))
   -- # djf 0.7
-  # shape 0.7
+  # shape 0.8
   # dry 0.95 # room 0.05 # sz 0.9
-  -- # distort 0.1
-  # pan perlin
+  # distort 0.1
+  -- # pan perlin
   -- MAX gain 0.9
-  # gain (slow 4 $ range 0.4 0.6 sine)
+  # gain (slow 4 $ range 0.5 0.9 sine)
 
 
 
 -- MELODY -> two variants of D3 which can be switched against each other
 -- bass/synth kinda line; reeaaaly simple
 
+-- make this a bit more interesting!!!
+
 d3 $ fast 2
   $ splice 4 pat
-  $ s "gw_cut:3(<3 5>,8)"
+  $ superimpose ((# hpf 220) . (# vowel "e o") . (# delay (slow 2 $ range 0 0.6 $ sine)))
+  $ s "gw_cut:3(<3 5 7>,8)"
+  # tilt 0.3
+  -- # djf rand
   # lpf 1800
-  # speed "<-2 -1.7>"
-  # fshift "320 80 1600" -- play the melody here!
-  -- MAX gain 1.1
-  # gain 0.5
+  # speed "<-1.9 -1.5>"  -- use one positive in live sometimes
+  # fshift "340 280 200" -- play the melody here!
+  -- # smear 0.1
+  # octersub "<8 1 2 4>"
+  -- MAX gain 0.9 (when superimpose is active!)
+  # gain 0.4
+  # legato 2
 
+
+
+
+
+
+
+
+-- MAYBE leave out
 
 -- building some drums --> nice THICK -> good for layering
 d4 $ fast 2 $ (striate 10) $ zoom (0.0, 0.25)
@@ -131,16 +173,15 @@ d4 $ fast 2 $ (striate 10) $ zoom (0.0, 0.25)
   # s "gw_cut"
   # speed "-1.5 -1 -1.8 -1.5"
   # legato 2.8
-  # djf "0.6 0.7 0.65 0.5"
+  -- # djf "0.6 0.7 0.65 0.5"
   -- # comb "0.6 0.3 0.5 0.9"
   -- # krush 0.3
   -- # fshift 50
   -- MAX gain 1.1
-  # gain 0.5
+  # gain 0.8
 
 
-
-
+hush
 
 
 
