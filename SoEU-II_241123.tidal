@@ -82,7 +82,7 @@ d6 $ slow 2
   # speed "0.9"
   # octave 6
   # binshift (slow 2 $ range 0.1 0.3 $ sine)
-  # gain 0.6
+  # gain 0.5
   -- # legato 1
   -- # lpf 1000
   # room 0.1 # sz 0.7
@@ -109,10 +109,10 @@ d1 $ fast 4
   # legato 1
   -- # djf (slow 8 $ range 0.45 0.75 sine)
   # fshift "<-100 130>"
-  # waveloss (pat*pat')
+  -- # waveloss (pat*pat')
   -- # pan perlin
   -- # comb 0.02
-  # vowel "a u [i|e]"
+  -- # vowel "a u [i|e]"
   -- # squiz "2 3"
   -- # smear "<0.5 4 0.8 3>"
   -- MAX gain 1.1
@@ -154,7 +154,7 @@ d3 $ fast 2
   -- # smear 0.1
   # octersub "<8 1 2 4>"
   -- MAX gain 0.9 (when superimpose is active!)
-  # gain 0.4
+  # gain 0.2
   # legato 2
 
 
