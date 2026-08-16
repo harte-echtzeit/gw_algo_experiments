@@ -90,7 +90,9 @@ d4 $ sometimes ((# squiz 2) . (# fast 3 (vowel "i a u")) . (# lpf 400)) $ someti
   # legato 14
   # speed (irand 16)
   -- MAX gain 0.8
-  # gain (fast 6 $ (range 0.3 0.8 $ cF 0.5 (gm "d4"))* sine)
+  # gain (fast 6 $ (range 0.3 0.8 $ cF 0.8 (gm "d4"))* sine)
+  # att 0.1
+  # rel 0.8
 
 -- a slow drone that run a long time...maybe add more randomness here!
 d5 $ slow 2
@@ -138,18 +140,18 @@ d6 $ sometimes (chop 82)
 -- let this one play as a proper beat by reducing slow to 1!
 d7 $ degradeBy 0.0
  $ slow 1
- $ layer[id, (# octersub 8) . (# gain (0.25*(range 0.3 1 $ cF 0.4 (gm "d7"))))]
+ $ layer[id, (# octersub 8) . (# gain (0.45*(range 0.3 1 $ cF 0.7 (gm "d7"))))]
  $ n "2 ~ [2|1] ~ ~ [4|6|2] 4 ~" # s "gw_cut"
  # grain 0.3 0.2
  # speed "-1.1"
  -- # coarse 5
  # lpf 2000
- # shape 0.4
- --  # comb 0.2
+ -- # shape 0.4
+ -- # comb 0.2
   # room 0.22 # sz 0.6 # dry 0.3
-  # tilt 0.01
+  -- # tilt 0.01
   -- MAX 1.5
- # gain (range 0.3 1 $ cF 0.4 (gm "d7"))
+ # gain (range 0.3 1 $ cF 0.8 (gm "d7"))
  -- # gain 0.7
 
 
@@ -159,18 +161,20 @@ d7 $ degradeBy 0.0
   -- $ rot "<0 2 4 6 8>"
   $ layer [id, rot 2]
   $ struct ("1 1 1 0 1 1 0 1") $ note "<a7 f8>" #  s "gw_cut:9"
-  # grain "0.495 0.5" "0.006"
+  # grain "0.495 0.5" "0.003"
   # coarse 16
   # vowel "i i a"
   # ring 0.9 # ringf 42
   # shape (fast 2 $ range 0.5 0.99 $ saw)
   # hpf 600
   # tilt 0.01
-  # delay 0.8
+  -- # delay 0.2
   -- MAX 0.5
   -- # gain 0.6
-   # gain (range 0.3 1.1 $ cF 0.2 (gm "d8"))
-
+   # gain (range 0.3 1.1 $ cF 0.8 (gm "d8"))
+  -- # att 0.01
+  -- # rel 0.2
+-- USE att and rel optional with longer  grain
 
 d8 $ silence
 
