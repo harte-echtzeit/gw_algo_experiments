@@ -226,7 +226,7 @@ d2 $ fast 1
   # dry 0.05 # room 0.18 # sz 0.9
   # distort 0.1
   # lock 1
-  # delay 0.9 # delaytime (1/6) # delayfb 0.6
+  -- # delay 0.9 # delaytime (1/6) # delayfb 0.6
   -- # pan perlin
   -- MAX gain 0.65
   # lpfbus 2 (segment 128 $ fast 1 $ range 400 2000 $ sine )
